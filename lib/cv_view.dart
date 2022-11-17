@@ -10,7 +10,7 @@ class CVView extends StatelessWidget {
         child: RichText(
             text: TextSpan(children: [
           TextSpan(
-              text: "My CV",
+              text: "Click here to view my CV",
               recognizer: TapGestureRecognizer()
                 ..onTap = () async {
                   var url =
