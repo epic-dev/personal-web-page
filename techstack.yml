@@ -1,0 +1,79 @@
+repo_name: epic-dev/personal-web-page
+report_id: f5a4de41dfcf762cc8198024a3d80eb9
+repo_type: Public
+timestamp: '2023-11-09T13:31:01+00:00'
+requested_by: pyuruts
+provider: github
+branch: master
+detected_tools_count: 6
+tools:
+- name: Dart
+  description: A new web programming language with libraries, a virtual machine, and
+    tools
+  website_url: https://www.dartlang.org/
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1646/Twitter-02.png
+  detection_source: Repo Metadata
+- name: Flutter
+  description: Cross-platform mobile framework from Google
+  website_url: https://flutter.io/
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Cross-Platform Mobile Development
+  image_url: https://img.stackshare.io/service/7180/flutter-mark-square-100.png
+  detection_source: pubspec.yaml
+  last_updated_by: Pavel Yuruts
+  last_updated_on: 2020-10-12 20:26:08.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source: Repo Metadata
+- name: cupertino_icons
+  description: Default icons asset for Cupertino widgets based on Apple styled icons
+  package_url: https://pub.dartlang.org/cupertino_icons
+  version: 1.0.0
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/pub/image.png
+  detection_source_url: pubspec.lock
+  detection_source: pubspec.yaml
+  last_updated_by: Pavel Yuruts
+  last_updated_on: 2020-10-12 20:26:08.000000000 Z
+- name: flutter
+  description: Visit flutter.io to get started
+  package_url: https://pub.dartlang.org/flutter
+  version: 0.0.0
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/pub/image.png
+  detection_source_url: pubspec.lock
+  detection_source: pubspec.yaml
+  last_updated_by: Pavel Yuruts
+  last_updated_on: 2020-10-12 20:26:08.000000000 Z
+- name: url_launcher
+  description: Flutter plugin for launching a URL
+  package_url: https://pub.dartlang.org/url_launcher
+  version: 6.1.2
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/pub/image.png
+  detection_source_url: pubspec.lock
+  detection_source: pubspec.yaml
+  last_updated_by: Pavel Yuruts
+  last_updated_on: 2022-11-17 21:58:27.000000000 Z
