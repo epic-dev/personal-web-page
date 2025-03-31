@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+    --animate-bloom: bloom 1s ease-in-out forwards;
+    @keyframes bloom {
+        0% { height: 0%; }
+        100% { height: 100%; }
+    }
+
+    --animate-shift-left: shift-left 1s ease-in-out 1s forwards;
+    @keyframes shift-left {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-6rem); }
+    }
+
+    --animate-text-fade-in-2: text-fade-in 1s ease-in-out 2s forwards;
+    --animate-text-fade-in-3: text-fade-in 1s ease-in-out 3s forwards;
+    @keyframes text-fade-in {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    --animate-width-rise: width-rise 1s ease-in-out 1s forwards;
+    @keyframes width-rise {
+        0% { width: 0px; }
+        100% { width: 200px; }
+    }
+}
