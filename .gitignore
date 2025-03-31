@@ -1,0 +1,5 @@
+.astro/
+.firebase/
+dist/
+node_modules/
+.history/
