@@ -1,8 +1,13 @@
+---
+import { Image } from 'astro:assets';
+import githubIcon from '../images/icons/github.svg';
+import instagramIcon from '../images/icons/instagram.svg';
+---
 <div class="flex gap-4 h-[30px] absolute top-1/2 left-1/2 pt-4 pl-4">
     <a href="https://github.com/epic-dev" target="_blank" class="opacity-0 animate-text-fade-in-2">
-        <img src="/github.svg" alt="github-link" width="24" />
+        <Image src={githubIcon} alt="github-link" width={24} />
     </a>
     <a href="https://instagram.com/yurutspavel" target="_blank" class="opacity-0 animate-text-fade-in-3">
-        <img src="/instagram.svg" alt="instagram-link" width="24" />
+        <Image src={instagramIcon} alt="instagram-link" width={24} />
     </a>
 </div>
