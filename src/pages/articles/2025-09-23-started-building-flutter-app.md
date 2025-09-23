@@ -22,11 +22,11 @@ I've got an idea to help myself learn Dutch. Where to start? Since I'm a softwar
 
 The initial MVP of my first mobile app took me a couple of evenings and numerous cups of coffee. So, here it is. _(link)_
 
-The main idea is to learn Dutch noun articles, distinguishing which article ('De' or 'Het') is used where.
+The main idea is to practice Dutch noun articles, learning to distinguish when to use “De” or “Het”.
 
 <!-- <Picture
   src={frontmatter.image1.src}
   alt={frontmatter.image1.alt}
 /> -->
 
-But it's not usual memoization of words with articles. The app uses spatial memory. Which means you need to swipe the card with a word to the correct direction. 
+But it's not usual memoization of words with articles. The app leverages spatial memory -- meaning you swipe the card with the word in the correct direction. 
