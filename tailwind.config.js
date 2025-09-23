@@ -1,5 +1,10 @@
+import defaultTheme from '@tailwindcss/defaultTheme'
+
 export default {
     theme: {
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans]
+      },
       extend: {
         keyframes: {
           fadeIn: {
