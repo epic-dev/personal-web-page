@@ -10,10 +10,6 @@ topImage:
   src: '/images/coding-day1.webp'
   alt: coding-day-1
 
-image1: 
-  src: '/images/2025-09-23.png'
-  alt: screenshot-1
-
 setup: |
   import { Picture } from "astro-imagetools/components";
 ---
@@ -24,9 +20,6 @@ The initial MVP of my first mobile app took me a couple of evenings and numerous
 
 The main idea is to practice Dutch noun articles, learning to distinguish when to use “De” or “Het”.
 
-<!-- <Picture
-  src={frontmatter.image1.src}
-  alt={frontmatter.image1.alt}
-/> -->
+![screenshot-1](/images/2025-09-23.png)
 
 But it's not usual memoization of words with articles. The app leverages spatial memory -- meaning you swipe the card with the word in the correct direction. 
