@@ -14,12 +14,12 @@ setup: |
   import { Picture } from "astro-imagetools/components";
 ---
 
-Today I've created a couple of UI components. One of them is the Card component which will be the main functional thing is the app.
+Today I created a couple of UI components. One of them is the Card component which will be the main functional element in the app.
 
-The card is draggable and depends on which side users drag the card the correct or incorrect answer will be given.
+The card is draggable and depending on which side a user drags the card, the correct or incorrect answer will be given.
 
 <mp4 file goes here>
 
-At the moment of this article I've already created a feedback overlay. This feedback shows the correctness of the answer given.
+At the time of this article I've already created a feedback overlay. This feedback shows whether the given answer is correct.
 
-Also added sound and haptic feedback depending on answer correctness.
+I also added sound and haptic feedback depending on the answer's correctness.
