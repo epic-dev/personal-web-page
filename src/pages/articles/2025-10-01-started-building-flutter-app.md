@@ -25,7 +25,7 @@ Okay, let's start with some proof of concept to not to drown in the details.
 
 ### Framework
 
-As I mentioned in [previous article](/2025-09-23-started-building-flutter-app) I've chosen Flutter. One codebase - multiple platforms. Flutter community becomes bigger and bigger each day, there are dozens of the widgets and plugins to build beutiful apps.
+As I mentioned in [previous article](/articles/2025-09-23-started-building-flutter-app) I've chosen Flutter. One codebase - multiple platforms. Flutter community becomes bigger and bigger each day, there are dozens of the widgets and plugins to build beutiful apps.
 
 Flutter also allows me to build different versions of the app based on 'flavors'. Each flavor is jus a set of configurations (bundle IDs, app names, feature flags, etc.). And it became the basis of the project allowing me to play with different settings depending on app version, include/exclude services and functionalities.
 
