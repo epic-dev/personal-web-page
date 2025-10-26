@@ -147,5 +147,8 @@
         margin-bottom: 0.25rem;
         color: #111111;
     }
-    
+    .article a {
+        color: #1a73e8;
+        text-decoration: underline;
+    }
 }
