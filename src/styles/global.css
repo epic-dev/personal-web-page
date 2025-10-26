@@ -27,6 +27,7 @@
 
     --animate-text-fade-in-2: text-fade-in 1s ease-in-out 2s forwards;
     --animate-text-fade-in-3: text-fade-in 1s ease-in-out 3s forwards;
+    --animate-text-fade-in-4: text-fade-in 1s ease-in-out 4s forwards;
 
     @keyframes text-fade-in {
         0% {
@@ -123,7 +124,7 @@
     .article p {
         margin-block: 1rem;
         text-indent: 2rem;
-        font-size: 1.2rem;
+        font-size: 1rem;
         letter-spacing: 0.2px;
         color: #242424;
     }
@@ -150,5 +151,11 @@
     .article a {
         color: #1a73e8;
         text-decoration: underline;
+    }
+    .footer {
+        text-align: center;
+        padding: 1rem 0;
+        border-top: 1px solid #e5e5e5;
+        margin-top: 2rem;
     }
 }

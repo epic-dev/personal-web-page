@@ -14,6 +14,8 @@ const { frontmatter } = Astro.props;
                     src={frontmatter.topImage.src}
                     alt={frontmatter.topImage.alt}
                     class="w-full h-[340px] object-cover mb-8 aspect-[1/1] animate-image-appearance duration-300"
+                    loading="eager"
+                    fetchpriority="high"
                 />
             ) : <div class="h-[340px] w-full bg-sky-700/80 animate-image-appearance duration-300" />
         }
