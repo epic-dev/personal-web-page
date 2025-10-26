@@ -17,7 +17,9 @@ const { frontmatter } = Astro.props;
                     loading="eager"
                     fetchpriority="high"
                 />
-            ) : <div class="h-[340px] w-full bg-sky-700/80 animate-image-appearance duration-300" />
+            ) : (
+                <div class="h-[340px] w-full bg-sky-700/80 animate-image-appearance duration-300" />
+            )
         }
     </div>
     <div class="absolute bg-sky-700 top-50 animate-heading-appearance">

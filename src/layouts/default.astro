@@ -12,7 +12,11 @@ import "../styles/global.css";
 		<title>Pavel's place</title>
 	</head>
 	<body class="h-screen">
-		<slot />
-		<Footer />
+		<div class="wrapper">
+			<main>
+				<slot />
+			</main>
+			<Footer />
+		</div>
 	</body>
 </html>

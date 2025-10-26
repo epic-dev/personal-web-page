@@ -5,30 +5,28 @@ import DefaultLayout from "../layouts/default.astro";
 ---
 
 <DefaultLayout>
-	<main>
-		<section class="relative max-w-4xl h-dvh m-auto">
-			<div class="absolute inset-0 w-48 m-auto h-[44px] animate-shift-left">
-				<div class="relative h-full">
+	<section class="relative max-w-4xl h-dvh m-auto">
+		<div class="absolute inset-0 w-48 m-auto h-[44px] animate-shift-left">
+			<div class="relative h-full">
+				<div
+					class="animate-bloom absolute left-1/2 -translate-1/2 w-1 h-1 border-l-1 border-black"
+				>
 					<div
-						class="animate-bloom absolute left-1/2 -translate-1/2 w-1 h-1 border-l-1 border-black"
+						class="h-full flex gap-1 whitespace-nowrap flex-col overflow-hidden pl-4 animate-width-rise"
 					>
-						<div
-							class="h-full flex gap-1 whitespace-nowrap flex-col overflow-hidden pl-4 animate-width-rise"
+						<span class="text-xl leading-none text-gray-600 font-bold"
+							>Pavel Yuruts</span
 						>
-							<span class="text-xl leading-none text-gray-600 font-bold"
-								>Pavel Yuruts</span
-							>
-							<span>Full-stack developer</span>
-						</div>
-					</div>
-					<div class="absolute top-1/2 left-1/2 pt-4 pl-4">
-						<SocialMediaLinks />
-					</div>
-					<div class="absolute top-14 left-1/2 pt-4 pl-4">
-						<Nav />
+						<span>Full-stack developer</span>
 					</div>
 				</div>
+				<div class="absolute top-1/2 left-1/2 pt-4 pl-4">
+					<SocialMediaLinks />
+				</div>
+				<div class="absolute top-14 left-1/2 pt-4 pl-4">
+					<Nav />
+				</div>
 			</div>
-		</section>
-	</main>
+		</div>
+	</section>
 </DefaultLayout>

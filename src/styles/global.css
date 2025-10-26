@@ -121,6 +121,11 @@
 }
 
 @layer base {
+    .wrapper {
+        min-height: 100%;
+        display: grid;
+        grid-template-rows: 1fr auto;
+    }
     .article p {
         margin-block: 1rem;
         text-indent: 2rem;
