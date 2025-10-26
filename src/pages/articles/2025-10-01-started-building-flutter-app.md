@@ -1,7 +1,7 @@
 ---
 layout: '../../layouts/article.astro'
-title: '[Day 2] Adding dummy UI'
-pubDate: 2025-09-23
+title: '[Day 2] Principles'
+pubDate: 2025-10-01
 description: 'This is the second post of my new Astro blog.'
 author: 'Pavel Yuruts'
 tags: ["astro", "blogging", "learning in public"]
