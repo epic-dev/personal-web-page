@@ -1,6 +1,6 @@
 ---
 layout: '../../layouts/article.astro'
-title: '[Day 4] About screen'
+title: '[Day 4] About Screen and Learning Tips'
 pubDate: 2025-11-07
 description: 'This is the fourth post of my new Astro blog.'
 author: 'Pavel Yuruts'
@@ -18,7 +18,11 @@ Today I created a screen that displays information about the app. To display the
 
 <screenshot goes here>
 
+One of the key features I think the app needs is "Learning Tips." These tips will appear randomly on each flashcard when a user clicks the light bulb icon.
+
+<screenshot goes here>
+
 I also made some small UI enhancements, updating the styling of the settings menu items.
-There is still a lot of work to do. A huge part of it is to distinguish which words should be in the Free version and which ones in the Pro version. I need to somehow separate them by categories and popularity, or even by common proficiency levels, like A1, A2, etc.
+There is still a lot of work to do. A huge part of it is distinguishing which words should be in the Free version and which should be in the Pro version. I need to separate them by category and popularity, or even by common proficiency levels like A1, A2, etc.
 
 To be continued...
