@@ -1,37 +1,38 @@
 ---
-import { Image } from "astro:assets";
 import DefaultLayout from "./default.astro";
 const { frontmatter } = Astro.props;
+
+const pubDate = new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 ---
 
 <DefaultLayout>
-    <div class="h-[340px] w-full">
-        {
-            frontmatter.topImage ? (
-                <Image
-                    width="100"
-                    height="340"
-                    src={frontmatter.topImage.src}
-                    alt={frontmatter.topImage.alt}
-                    class="w-full h-[340px] object-cover mb-8 aspect-[1/1] animate-image-appearance duration-300"
-                    loading="eager"
-                    fetchpriority="high"
-                />
-            ) : (
-                <div class="h-[340px] w-full bg-sky-700/80 animate-image-appearance duration-300" />
-            )
-        }
+  <article class="max-w-3xl mx-auto px-6 py-24 sm:py-32">
+    <header class="mb-16 text-center opacity-0 animate-fade-up">
+      <div class="mb-6 text-sm font-medium tracking-wider text-gray-500 uppercase">
+        {frontmatter.category || "Blog"}
+      </div>
+      <h1
+        class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-6 leading-tight"
+      >
+        {frontmatter.title}
+      </h1>
+      <div class="flex items-center justify-center gap-4 text-gray-500">
+        <time datetime={frontmatter.pubDate}>{pubDate}</time>
+        {frontmatter.author && (
+          <>
+            <span>&middot;</span>
+            <span>{frontmatter.author}</span>
+          </>
+        )}
+      </div>
+    </header>
+
+    <div class="prose prose-lg prose-gray mx-auto opacity-0 animate-fade-up delay-200">
+      <slot />
     </div>
-    <div class="absolute bg-sky-700 top-50 animate-heading-appearance">
-        <h1
-            class="text-2xl sm:text-3xl lg:text-5xl leading-[1.5] py-4 px-6 font-bold text-white text-center"
-        >
-            {frontmatter.title}
-        </h1>
-    </div>
-    <div class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <article class="article animate-text-appearance">
-            <slot />
-        </article>
-    </div>
+  </article>
 </DefaultLayout>

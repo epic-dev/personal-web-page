@@ -15,6 +15,13 @@ export default {
         animation: {
           fadein: "fadeIn 1.5s ease-in-out forwards",
         },
+        animationDelay: {
+          '100': '100ms',
+          '200': '200ms',
+          '300': '300ms',
+          '400': '400ms',
+          '500': '500ms',
+        },
       },
     },
   };

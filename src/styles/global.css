@@ -50,116 +50,90 @@
             width: 200px;
         }
     }
+
+    /* New Animations */
+    --animate-fade-up: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+    @keyframes fade-up {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 }
 
 @layer base {
     @font-face {
         font-family: 'Inter';
         font-style: normal;
-        font-weight: 400;
+        font-weight: 100 900;
         font-display: swap;
-        src: url('/fonts/Inter-Italic-VariableFont_opsz,wght.ttf') format('ttf'),
-            url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('ttf');
+        src: url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('ttf');
+    }
+
+    @font-face {
+        font-family: 'Inter';
+        font-style: italic;
+        font-weight: 100 900;
+        font-display: swap;
+        src: url('/fonts/Inter-Italic-VariableFont_opsz,wght.ttf') format('ttf');
     }
 
     html {
         font-family: "Inter", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        @apply text-gray-900 bg-white;
     }
 }
 
-@theme {
-    --animate-image-appearance: image-appearance 0.5s 0s;
-    --animate-heading-appearance: heading-appearance 0.5s 0s;
-    --animate-text-appearance: text-appearance 0.5s 0s;
-
-    @keyframes image-appearance {
-        0% {
-            transform: translateY(-35%);
-            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-        }
-        50% {
-            transform: translateY(-10%);
-            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-        }
-        100% {
-            transform: none;
-            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-        }
+@layer components {
+    .prose {
+        @apply text-gray-700 leading-relaxed;
     }
     
-    @keyframes heading-appearance {
-        0% {
-            transform: translateX(-35%);
-            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-        }
-        50% {
-            transform: translateX(-10%);
-            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-        }
-        100% {
-            transform: none;
-            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-        }
+    .prose p {
+        @apply mb-6 text-lg;
     }
-    @keyframes text-appearance {
-        0% {
-            transform: translateY(35%);
-            opacity: 0;
-            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-        }
-        50% {
-            transform: translateY(10%);
-            opacity: 0.5;
-            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-        }
-        100% {
-            opacity: 1;
-            transform: none;
-            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-        }
-    }
-}
 
-@layer base {
+    .prose h2 {
+        @apply text-2xl font-bold text-gray-900 mt-12 mb-6 tracking-tight;
+    }
+
+    .prose h3 {
+        @apply text-xl font-bold text-gray-900 mt-8 mb-4 tracking-tight;
+    }
+
+    .prose a {
+        @apply text-blue-600 hover:text-blue-800 underline decoration-blue-600/30 hover:decoration-blue-800 transition-colors;
+    }
+
+    .prose ul {
+        @apply list-disc list-outside ml-6 mb-6 space-y-2;
+    }
+
+    .prose ol {
+        @apply list-decimal list-outside ml-6 mb-6 space-y-2;
+    }
+
+    .prose blockquote {
+        @apply border-l-4 border-gray-200 pl-6 italic text-gray-600 my-8;
+    }
+    
     .wrapper {
-        min-height: 100%;
-        display: grid;
-        grid-template-rows: 1fr auto;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
-    .article p {
-        margin-block: 1rem;
-        text-indent: 2rem;
-        font-size: 1rem;
-        letter-spacing: 0.2px;
-        color: #242424;
-    }
-    h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        color: #111111;
-    }
-    h2 {
-        font-size: 2rem;
-        margin-bottom: 0.75rem;
-        color: #111111;
-    }
-    h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-        color: #111111;
-    }
-    h4 {
-        font-size: 1.25rem;
-        margin-bottom: 0.25rem;
-        color: #111111;
-    }
-    .article a {
-        color: #1a73e8;
-        text-decoration: underline;
-    }
-    .footer {
-        text-align: center;
-        padding: 1rem 0;
-        border-top: 1px solid #e5e5e5;
+    
+    main {
+        flex: 1;
     }
 }
