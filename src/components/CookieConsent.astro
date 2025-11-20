@@ -1,0 +1,219 @@
+---
+---
+
+<div
+  id="cookie-banner"
+  class="fixed bottom-4 left-4 z-50 w-full max-w-sm translate-y-20 opacity-0 transition-all duration-500 ease-out hidden"
+>
+  <div class="bg-white/90 backdrop-blur-md border border-gray-200 rounded-lg shadow-lg p-6">
+    <div class="flex flex-col gap-4">
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">We use cookies</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          We use cookies to enhance your browsing experience and analyze our traffic.
+          Please choose if you're okay with this.
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button
+          id="accept-cookies"
+          class="flex-1 px-4 py-2 bg-black text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+        >
+          Accept All
+        </button>
+        <button
+          id="reject-cookies"
+          class="flex-1 px-4 py-2 bg-white text-gray-700 border border-gray-300 text-sm font-medium rounded-md hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+        >
+          Reject
+        </button>
+        <button
+          id="manage-cookies"
+          class="px-4 py-2 text-gray-600 text-sm font-medium hover:text-gray-900 transition-colors underline decoration-gray-300 underline-offset-4"
+        >
+          Manage
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Preferences Modal -->
+<div
+  id="cookie-modal"
+  class="fixed inset-0 z-[60] bg-black/20 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"
+  aria-modal="true"
+  role="dialog"
+>
+  <div class="flex min-h-full items-center justify-center p-4">
+    <div
+      class="bg-white rounded-xl shadow-2xl w-full max-w-md transform transition-all scale-95 opacity-0 duration-300"
+      id="cookie-modal-content"
+    >
+      <div class="p-6 border-b border-gray-100">
+        <h3 class="text-xl font-semibold text-gray-900">Cookie Preferences</h3>
+        <p class="mt-2 text-sm text-gray-500">
+          Manage your cookie settings. Strictly necessary cookies are always enabled.
+        </p>
+      </div>
+      
+      <div class="p-6 space-y-6">
+        <!-- Necessary -->
+        <div class="flex items-start justify-between">
+          <div class="flex-1 pr-4">
+            <label class="font-medium text-gray-900 block">Necessary</label>
+            <p class="text-xs text-gray-500 mt-1">Required for the website to function properly.</p>
+          </div>
+          <div class="relative inline-flex items-center cursor-not-allowed opacity-50">
+            <input type="checkbox" checked disabled class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-black"></div>
+          </div>
+        </div>
+
+        <!-- Analytics -->
+        <div class="flex items-start justify-between">
+          <div class="flex-1 pr-4">
+            <label for="analytics-toggle" class="font-medium text-gray-900 block cursor-pointer">Analytics</label>
+            <p class="text-xs text-gray-500 mt-1">Help us understand how visitors interact with the website.</p>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="analytics-toggle" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-black"></div>
+          </label>
+        </div>
+      </div>
+
+      <div class="p-6 border-t border-gray-100 bg-gray-50 rounded-b-xl flex justify-end gap-3">
+        <button
+          id="save-preferences"
+          class="px-4 py-2 bg-black text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+        >
+          Save Preferences
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Core logic
+  const STORAGE_KEY = 'cookie_consent';
+  const banner = document.getElementById('cookie-banner');
+  const modal = document.getElementById('cookie-modal');
+  const modalContent = document.getElementById('cookie-modal-content');
+  const analyticsToggle = document.getElementById('analytics-toggle') as HTMLInputElement;
+
+  function getConsent() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (!stored) return null;
+    return JSON.parse(stored);
+  }
+
+  function setConsent(preferences: { analytics: boolean }) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
+    applyConsent(preferences);
+    hideBanner();
+    hideModal();
+  }
+
+  function applyConsent(preferences: { analytics: boolean }) {
+    if (preferences.analytics) {
+      enableAnalytics();
+    }
+  }
+
+  function enableAnalytics() {
+    console.log('Enabling analytics...');
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    
+    // Find all scripts with data-category="analytics"
+    const scripts = document.querySelectorAll('script[data-category="analytics"]');
+    scripts.forEach((script) => {
+      const newScript = document.createElement('script');
+      
+      // Copy attributes
+      Array.from(script.attributes).forEach(attr => {
+        if (attr.name !== 'type' && attr.name !== 'data-category') {
+          newScript.setAttribute(attr.name, attr.value);
+        }
+      });
+
+      // Set type to partytown so it runs
+      newScript.setAttribute('type', 'text/partytown');
+      newScript.innerHTML = script.innerHTML;
+      
+      // Replace old script
+      script.parentNode?.replaceChild(newScript, script);
+      
+      // Notify Partytown to rescan if needed (usually DOM mutation is enough, but dispatching event helps)
+      window.dispatchEvent(new Event('ptupdate'));
+    });
+  }
+
+  function showBanner() {
+    banner?.classList.remove('hidden');
+    // Small delay for animation
+    setTimeout(() => {
+      banner?.classList.remove('translate-y-20', 'opacity-0');
+    }, 100);
+  }
+
+  function hideBanner() {
+    banner?.classList.add('translate-y-20', 'opacity-0');
+    setTimeout(() => {
+      banner?.classList.add('hidden');
+    }, 500);
+  }
+
+  function showModal() {
+    const currentConsent = getConsent();
+    if (analyticsToggle) {
+      analyticsToggle.checked = currentConsent ? currentConsent.analytics : false;
+    }
+    
+    modal?.classList.remove('hidden');
+    // Force reflow
+    void modal?.offsetWidth;
+    modal?.classList.remove('opacity-0');
+    modalContent?.classList.remove('scale-95', 'opacity-0');
+  }
+
+  function hideModal() {
+    modal?.classList.add('opacity-0');
+    modalContent?.classList.add('scale-95', 'opacity-0');
+    setTimeout(() => {
+      modal?.classList.add('hidden');
+    }, 300);
+  }
+
+  // Event Listeners
+  document.getElementById('accept-cookies')?.addEventListener('click', () => {
+    setConsent({ analytics: true });
+  });
+
+  document.getElementById('reject-cookies')?.addEventListener('click', () => {
+    setConsent({ analytics: false });
+  });
+
+  document.getElementById('manage-cookies')?.addEventListener('click', () => {
+    showModal();
+  });
+
+  document.getElementById('save-preferences')?.addEventListener('click', () => {
+    setConsent({ analytics: analyticsToggle?.checked ?? false });
+  });
+
+  // Close modal on outside click
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) hideModal();
+  });
+
+  // Init
+  const consent = getConsent();
+  if (consent) {
+    applyConsent(consent);
+  } else {
+    showBanner();
+  }
+</script>

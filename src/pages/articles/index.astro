@@ -2,7 +2,7 @@
 import DefaultLayout from "../../layouts/default.astro";
 
 // Get all article files
-const articles = await Astro.glob('./*.md');
+const articles = await Astro.glob('./*.mdx');
 
 // Sort by date (newest first) and filter out index
 const sortedArticles = articles

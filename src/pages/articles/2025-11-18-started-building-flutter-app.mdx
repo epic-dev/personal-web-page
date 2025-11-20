@@ -1,0 +1,58 @@
+---
+layout: '../../layouts/article.astro'
+title: '[Day 5] The first issue that forces me to change the core'
+pubDate: 2025-11-18
+description: 'This is the fifth post of my new Astro blog.'
+author: 'Pavel Yuruts'
+tags: ["astro", "blogging", "learning in public"]
+
+topImage: 
+  src: '/images/coding-day1.webp'
+  alt: coding-day-1
+
+setup: |
+  import { Picture } from "astro-imagetools/components";
+---
+
+From the previous post you can see that I've added Learning tips to the app. Those tips apeared on the screen by clicking on the 'light bulb' icon on the flash card.
+And that caused one of the issues that forced me to revisit the whole state management of the app.
+Today I made a small enhancement to the UX. I've' added functionality which shows hints, in which direction the flash card should be swiped.
+It is an animation that slightly shift the card to the left or right, depending on the correct direction of the swipe. Of course, it works only if user didn't touch the card.
+
+But first, let me introduce some prerequsites.
+
+### Learning Tips Implementation
+<i>how i did this</i>
+### Hints Implementation
+<i>how i did this</i>
+### State Management
+
+I've been using `provider` package for state management. It is a simple and effective way to manage state in Flutter.
+The concept is simple: you create a provider class that holds the state (the viewmodel), and then you can access it from any widget in the app.
+
+The viewmodel I've created holds the current swipes count, the current word for the flash card and the methods to process the swipe.
+Also the same viewmodel contains the methods to display the learning tips. 
+
+You might already guess the problem. The issue is that the viewmodel knows and holds almost everything that users ineract with on the screen.
+Which in turn means that making updates to the state forces widgets to rebuild on every single update. Which in most cases is good 'cause it's expected behavior.
+
+But in my case it was a problem. Imagine a scenario where I tapped on the 'light bulb' icon on the flash card to view the tip. And I didn't touch a flash card.
+
+### The problem
+
+The hints mechanism is running, it tracks the 'idle' time of the card. When timer is stopped to show the hint the learning tip widget starts rebuilding.
+So, on each frame update the learning tip widget rebuilds and displays new random tip. Just imaging how many times it changes the text of the tip in a second.
+Wild, innit? So, I needed to find a way to prevent such weird behavior.
+
+### The solution
+
+The solution is pretty descent. Divide and conquer! I decided to split the state into parts. I should have done it from the start but... well, it's never too late.
+
+I created a new provider for the learning tip widget. It holds the current tip and the methods to display the tip.
+And keep the rest of the state in the main provider. Simple, right? Well... not this time. 
+
+I've just heard about the `riverpod` package. Modern, reactive less verbose.
+
+And another journey has just started.
+
+To be continued...

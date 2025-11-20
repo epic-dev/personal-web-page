@@ -1,5 +1,6 @@
 ---
 import Footer from "../components/footer.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 import "../styles/global.css";
 ---
 
@@ -10,6 +11,21 @@ import "../styles/global.css";
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Pavel's place</title>
+		<!-- Google tag (gtag.js) -->
+		<script
+			type="text/plain"
+			data-category="analytics"
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-LQSRGN2WB9"></script>
+		<script type="text/plain" data-category="analytics">
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-LQSRGN2WB9");
+		</script>
 	</head>
 	<body class="h-screen">
 		<div class="wrapper">
@@ -18,5 +34,6 @@ import "../styles/global.css";
 			</main>
 			<Footer />
 		</div>
+		<CookieConsent />
 	</body>
 </html>

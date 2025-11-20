@@ -35,4 +35,7 @@ const pubDate = new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
       <slot />
     </div>
   </article>
+  <script type="text/plain" data-category="analytics">
+    gtag("event", "article_page_loaded");
+  </script>
 </DefaultLayout>
