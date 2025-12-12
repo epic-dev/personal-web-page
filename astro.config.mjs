@@ -9,13 +9,17 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://pavelyuruts.com',
   vite: {
     plugins: [tailwindcss()]
   },
 
   integrations: [
     mdx(),
-    sitemap(),
+    sitemap({
+      filter: (page) => page !== 'https://pavelyuruts.com/portfolio/dehet-app/privacy-policy'
+        && page !== 'https://pavelyuruts.com/portfolio/dehet-app/terms-of-use',
+    }),
     partytown({
       config: {
         forward: ["dataLayer.push"],
