@@ -12,15 +12,17 @@ const pubDate = new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
 <DefaultLayout>
   <article class="max-w-3xl mx-auto px-6 py-24 sm:py-32">
     <header class="mb-16 text-center opacity-0 animate-fade-up">
-      <div class="mb-6 text-sm font-medium tracking-wider text-gray-500 uppercase">
+    <a href="/blog">
+      <div class="mb-6 text-sm font-medium tracking-wider text-gray-500 dark:text-white uppercase">
         {frontmatter.category || "Blog"}
       </div>
+      </a>
       <h1
-        class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-6 leading-tight"
+        class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-6 leading-tight"
       >
         {frontmatter.title}
       </h1>
-      <div class="flex items-center justify-center gap-4 text-gray-500">
+      <div class="flex items-center justify-center gap-4 text-gray-500 dark:text-white">
         <time datetime={frontmatter.pubDate}>{pubDate}</time>
         {frontmatter.author && (
           <>

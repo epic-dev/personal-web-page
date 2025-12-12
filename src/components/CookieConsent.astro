@@ -5,11 +5,11 @@
   id="cookie-banner"
   class="fixed bottom-4 left-4 z-50 w-full max-w-sm translate-y-20 opacity-0 transition-all duration-500 ease-out hidden"
 >
-  <div class="bg-white/90 backdrop-blur-md border border-gray-200 rounded-lg shadow-lg p-6">
+  <div class="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-lg shadow-lg p-6">
     <div class="flex flex-col gap-4">
       <div>
-        <h3 class="text-lg font-semibold text-gray-900 mb-2">We use cookies</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">We use cookies</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
           We use cookies to enhance your browsing experience and analyze our traffic.
           Please choose if you're okay with this.
         </p>
@@ -17,19 +17,19 @@
       <div class="flex flex-col sm:flex-row gap-3">
         <button
           id="accept-cookies"
-          class="flex-1 px-4 py-2 bg-black text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+          class="flex-1 px-4 py-2 bg-black dark:bg-white text-white dark:text-black text-sm font-medium rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:focus:ring-white"
         >
           Accept All
         </button>
         <button
           id="reject-cookies"
-          class="flex-1 px-4 py-2 bg-white text-gray-700 border border-gray-300 text-sm font-medium rounded-md hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+          class="flex-1 px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-700 text-sm font-medium rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
         >
           Reject
         </button>
         <button
           id="manage-cookies"
-          class="px-4 py-2 text-gray-600 text-sm font-medium hover:text-gray-900 transition-colors underline decoration-gray-300 underline-offset-4"
+          class="px-4 py-2 text-gray-600 dark:text-gray-400 text-sm font-medium hover:text-gray-900 dark:hover:text-white transition-colors underline decoration-gray-300 dark:decoration-gray-600 underline-offset-4"
         >
           Manage
         </button>
@@ -41,18 +41,18 @@
 <!-- Preferences Modal -->
 <div
   id="cookie-modal"
-  class="fixed inset-0 z-[60] bg-black/20 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"
+  class="fixed inset-0 z-[60] bg-black/20 dark:bg-black/50 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"
   aria-modal="true"
   role="dialog"
 >
   <div class="flex min-h-full items-center justify-center p-4">
     <div
-      class="bg-white rounded-xl shadow-2xl w-full max-w-md transform transition-all scale-95 opacity-0 duration-300"
+      class="bg-white dark:bg-gray-900 rounded-xl shadow-2xl w-full max-w-md transform transition-all scale-95 opacity-0 duration-300"
       id="cookie-modal-content"
     >
-      <div class="p-6 border-b border-gray-100">
-        <h3 class="text-xl font-semibold text-gray-900">Cookie Preferences</h3>
-        <p class="mt-2 text-sm text-gray-500">
+      <div class="p-6 border-b border-gray-100 dark:border-gray-800">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Cookie Preferences</h3>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
           Manage your cookie settings. Strictly necessary cookies are always enabled.
         </p>
       </div>
@@ -61,32 +61,32 @@
         <!-- Necessary -->
         <div class="flex items-start justify-between">
           <div class="flex-1 pr-4">
-            <label class="font-medium text-gray-900 block">Necessary</label>
-            <p class="text-xs text-gray-500 mt-1">Required for the website to function properly.</p>
+            <label class="font-medium text-gray-900 dark:text-white block">Necessary</label>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Required for the website to function properly.</p>
           </div>
           <div class="relative inline-flex items-center cursor-not-allowed opacity-50">
             <input type="checkbox" checked disabled class="sr-only peer">
-            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-black"></div>
+            <div class="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-black dark:peer-checked:bg-white"></div>
           </div>
         </div>
 
         <!-- Analytics -->
         <div class="flex items-start justify-between">
           <div class="flex-1 pr-4">
-            <label for="analytics-toggle" class="font-medium text-gray-900 block cursor-pointer">Analytics</label>
-            <p class="text-xs text-gray-500 mt-1">Help us understand how visitors interact with the website.</p>
+            <label for="analytics-toggle" class="font-medium text-gray-900 dark:text-white block cursor-pointer">Analytics</label>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Help us understand how visitors interact with the website.</p>
           </div>
           <label class="relative inline-flex items-center cursor-pointer">
             <input type="checkbox" id="analytics-toggle" class="sr-only peer">
-            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-black"></div>
+            <div class="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-black dark:peer-checked:bg-white"></div>
           </label>
         </div>
       </div>
 
-      <div class="p-6 border-t border-gray-100 bg-gray-50 rounded-b-xl flex justify-end gap-3">
+      <div class="p-6 border-t border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50 rounded-b-xl flex justify-end gap-3">
         <button
           id="save-preferences"
-          class="px-4 py-2 bg-black text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+          class="px-4 py-2 bg-black dark:bg-white text-white dark:text-black text-sm font-medium rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:focus:ring-white"
         >
           Save Preferences
         </button>

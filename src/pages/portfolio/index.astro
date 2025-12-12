@@ -1,0 +1,58 @@
+---
+import DefaultLayout from "../../layouts/default.astro";
+import { Image } from "astro:assets";
+import dehetAppImage from "../../images/portfolio/de-het-group.webp";
+
+const portfolioItems = [
+  {
+    title: "De Het",
+    category: "Mobile App",
+    description: "Master Dutch articles with this intuitive learning companion. Ad-free and offline. Just effective.",
+    image: dehetAppImage,
+    link: "/portfolio/dehet-app",
+    color: "bg-blue-50 dark:bg-blue-900/20",
+  },
+];
+---
+
+<DefaultLayout>
+  <div class="max-w-6xl mx-auto px-6 py-24 sm:py-32">
+    <header class="mb-20 opacity-0 animate-fade-up">
+      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
+        Portfolio
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed">
+        A selection of projects I've crafted with care. Focusing on clean design, performance, and user privacy.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 opacity-0 animate-fade-up delay-200">
+      {portfolioItems.map((item) => (
+        <a 
+          href={item.link}
+          class="group relative flex flex-col overflow-hidden rounded-3xl bg-gray-100 dark:bg-gray-800 transition-all duration-500 hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20"
+        >
+          <div class={`aspect-[4/3] w-full overflow-hidden ${item.color} flex items-center justify-center p-10`}>
+            <Image 
+              src={item.image} 
+              alt={item.title}
+              width={600}
+              class="h-full w-full object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-105 group-hover:rotate-1"
+            />
+          </div>
+          <div class="p-8 flex flex-col flex-grow bg-white dark:bg-gray-900/50 backdrop-blur-sm">
+            <div class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2">
+              {item.category}
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              {item.title}
+            </h2>
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-2">
+              {item.description}
+            </p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</DefaultLayout>
