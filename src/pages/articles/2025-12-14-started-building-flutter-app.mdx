@@ -1,0 +1,33 @@
+---
+layout: '../../layouts/article.astro'
+title: '[Day 6] Introducing Dark mode'
+pubDate: 2025-12-14
+description: 'This is the sixth post of my new Astro blog.'
+author: 'Pavel Yuruts'
+tags: ["astro", "blogging", "learning in public"]
+
+topImage: 
+  src: '/images/coding-day1.webp'
+  alt: coding-day-1
+
+setup: |
+  import { Picture } from "astro-imagetools/components";
+---
+
+Today I've added Dark mode to the app. It is a simple implementation at the first glance, but it requires you to shift your mindset a bit.
+
+### Material Design Theme
+
+Flutter's Material Design provides a comprehensive theming system that allows for consistent styling across your application. This system enables you to define distinct color schemes, typography, and other visual properties that can be easily switched based on user preferences or system settings.
+
+So, what does it mean mentally?  The theme is not just a color palette, it is a set of rules that define how the app should look and feel. It's like a sematic contract.
+When you're applying the theme you should think of the meaning of the actions, what color should represent the prmary action, what color means error, etc.
+
+Taking this into account, Material provides theme settings like `surface`, `onSurface`, `primary`, `onPrimary`, etc. for the color scheme.
+And it also provides `brightness` setting to define if the theme is light or dark. 
+
+Those settings are used for Cards, Buttons, Backgrounds, Text, etc. You might never use hardcoded colors in your widgets.
+
+Also Material allows you to extend the theme based on your branding 'cause Material doesn't know anything about your custom design.
+
+To be continued...
