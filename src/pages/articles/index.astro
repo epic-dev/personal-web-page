@@ -17,10 +17,10 @@ const sortedArticles = articles
 <DefaultLayout>
   <div class="max-w-4xl mx-auto px-6 py-24 sm:py-32">
     <header class="mb-16 opacity-0 animate-fade-up">
-      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight text-gray-900 mb-4">
+      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
         Blog
       </h1>
-      <p class="text-xl text-gray-600">
+      <p class="text-xl text-gray-600 dark:text-gray-400">
         Thoughts on software development, mobile apps, and learning in public.
       </p>
     </header>
@@ -43,11 +43,11 @@ const sortedArticles = articles
                 <time class="text-sm font-medium text-gray-500 uppercase tracking-wider">
                   {pubDate}
                 </time>
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors">
+                <h2 class="text-2xl sm:text-3xl font-bold dark:text-white group-hover:text-blue-600 transition-colors">
                   {article.frontmatter.title}
                 </h2>
                 {article.frontmatter.description && (
-                  <p class="text-lg text-gray-600 leading-relaxed">
+                  <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                     {article.frontmatter.description}
                   </p>
                 )}

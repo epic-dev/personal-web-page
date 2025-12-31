@@ -105,19 +105,19 @@
     }
 
     .prose h2 {
-        @apply text-2xl font-bold text-gray-900 dark:text-gray-100 mt-12 mb-6 tracking-tight;
+        @apply text-2xl font-bold text-gray-900 dark:text-white mt-12 mb-6 tracking-tight;
     }
 
     .prose h3 {
-        @apply text-xl font-bold text-gray-900 dark:text-gray-100 mt-8 mb-4 tracking-tight;
+        @apply text-xl font-bold text-gray-900 dark:text-white mt-8 mb-4 tracking-tight;
     }
 
     .prose h4 {
-        @apply text-lg font-bold text-gray-900 dark:text-gray-100 mt-6 mb-3 tracking-tight;
+        @apply text-lg font-bold text-gray-900 dark:text-white mt-6 mb-3 tracking-tight;
     }
 
     .prose h5 {
-        @apply text-base font-bold text-gray-900 dark:text-gray-100 mt-4 mb-2 tracking-tight;
+        @apply text-base font-bold text-gray-900 dark:text-white mt-4 mb-2 tracking-tight;
     }
 
     .prose strong {
@@ -141,7 +141,7 @@
     }
 
     .wrapper {
-        min-height: 100vh;
+        min-height: 100svh;
         display: flex;
         flex-direction: column;
     }
