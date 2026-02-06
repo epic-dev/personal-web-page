@@ -1,0 +1,26 @@
+- id: 1
+  title: Common Nouns #2000+ add words for Free plan
+  description: Curated list of the most essential words for daily conversation.
+  icon: library_books
+- id: 2
+  title: Spaced Repetition
+  description: Our algorithm knows exactly when to show you a card again for maximum retention.
+  icon: psychology
+- id: 3
+  title: Offline Mode
+  description: Learn on the subway or plane. No internet connection required.
+  icon: wifi_off
+- id: 6
+  title: Gamified Progress
+  description: Earn streaks and badges as you master new vocabulary sets.
+  icon: trophy
+- id: 5
+  title: Favorites List
+  description: Save difficult words to a custom list for focused practice sessions.
+  icon: favorite
+  coming_soon: true
+- id: 4
+  title: Audio Pronunciation
+  description: Hear the correct pronunciation for every word by native speakers.
+  icon: graphic_eq
+  coming_soon: true

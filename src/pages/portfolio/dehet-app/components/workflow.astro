@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+
+const workflow = await getCollection("workflow");
+---
+
+<div
+  class="py-20 dark:bg-surface-dark bg-surface-light border-y dark:border-surface-border border-surface-border-light"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-3">
+        Workflow
+      </h2>
+      <h3 class="text-3xl md:text-4xl font-bold dark:text-white text-main mb-4">
+        Swipe to Learn
+      </h3>
+      <p class="text-text-muted dark:text-slate-400 text-lg">
+        Our intuitive interface mimics natural gestures to help you memorize
+        articles faster. It's just like a dating app, but for Dutch grammar.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {
+        workflow.map(({ data }) => (
+          <div class="group p-8 rounded-2xl dark:bg-background-dark bg-background-light border dark:border-surface-border border-surface-border-light hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5">
+            <div class="w-14 h-14 rounded-xl bg-background-light dark:bg-surface-border flex items-center justify-center dark:text-white text-main mb-6 group-hover:bg-primary group-hover:text-white transition-all shadow-sm">
+              <span class="material-symbols-outlined text-[28px]">
+                {data.icon}
+              </span>
+            </div>
+            <h4 class="text-xl font-bold dark:text-white text-main mb-3">
+              {data.title}
+            </h4>
+            <p class="text-text-muted dark:text-slate-400 leading-relaxed">
+              {data.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

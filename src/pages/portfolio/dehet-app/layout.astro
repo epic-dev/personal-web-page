@@ -1,0 +1,44 @@
+---
+import { SEO } from "astro-seo";
+import "./styles.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <SEO
+      title="De Het Swipe - Master Dutch Articles"
+      description="Stop guessing 'De' or 'Het'. Swipe your way to fluency with our smart, developer-friendly flashcard system designed for efficiency."
+      openGraph={{
+        basic: {
+          title: "De Het Swipe - Master Dutch Articles",
+          type: "website",
+          image:
+            "https://placehold.co/1200x630/2b8cee/ffffff?text=De+Het+Swipe",
+        },
+      }}
+      twitter={{
+        card: "summary_large_image",
+      }}
+    />
+    <link rel="icon" href="/favicon.svg" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 selection:bg-blue-800/30 selection:text-white dark:selection:bg-red-500/30 dark:selection:text-blue-500 overflow-x-hidden"
+  >
+    <slot />
+  </body>
+</html>

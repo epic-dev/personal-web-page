@@ -1,0 +1,82 @@
+---
+import { Image } from "astro:assets";
+import heroImage from "../assets/screen-content.png";
+import AppStoreButton from "./app-store-button.astro";
+import GooglePlayBadge from "../assets/GetItOnGooglePlay_Badge_Web_color_English.svg";
+---
+
+<div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+  <div class="flex-1 text-center lg:text-left">
+    <div
+      class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-500 bg-gray-200/50 text-xs font-medium text-slate-800 mb-6"
+    >
+      <span class="flex h-2 w-2 rounded-full bg-orange-500"></span>
+      v1.0 is now live on App Store
+    </div>
+    <h1
+      class="text-5xl md:text-7xl font-black tracking-tight leading-[1.2] mb-6 font-display"
+    >
+      <span class="text-slate-800 dark:text-white">Master Dutch</span>
+      <span class="gradient-text bg-loop">noun articles</span>
+    </h1>
+    <p
+      class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto lg:mx-0 font-light font-display"
+    >
+      Stop guessing 'De' or 'Het'. Swipe your way to fluency with our smart,
+      developer-friendly flashcard system designed for efficiency.
+    </p>
+    <div
+      class="flex flex-col sm:flex-row -items-center justify-center lg:justify-start gap-4 h-[40px]"
+    >
+      <AppStoreButton />
+      <!-- TODO: Add Google Play link -->
+      <!-- <a href="#" target="_blank" rel="noopener noreferrer">
+        <GooglePlayBadge />
+      </a> -->
+      <!-- TODO: Add demo video -->
+      <!-- <button
+        class="h-14 px-8 rounded-xl bg-surface-dark border border-surface-border text-white font-medium flex items-center justify-center gap-3 hover:bg-surface-border/50 transition-colors w-full sm:w-auto min-w-[200px]"
+      >
+        <span class="material-symbols-outlined">play_arrow</span>
+        <span>Watch Demo</span>
+      </button> -->
+    </div>
+    <div
+      class="mt-10 flex items-center justify-center lg:justify-start gap-6 text-text-muted dark:text-slate-500 text-sm"
+    >
+      <div class="flex items-center gap-2">
+        <span
+          class="material-symbols-outlined text-[18px] text-green-500 dark:text-inherit"
+          >check_circle</span
+        >
+        <span>No Ads</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span
+          class="material-symbols-outlined text-[18px] text-green-500 dark:text-inherit"
+          >check_circle</span
+        >
+        <span>Offline Mode</span>
+      </div>
+      <!-- <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">check_circle</span>
+        <span>Dark Mode Native</span>
+      </div> -->
+    </div>
+  </div>
+  <div class="flex-1 w-full max-w-[500px] lg:max-w-none relative">
+    <div
+      class="relative mx-auto w-[300px] h-[600px] rounded-[3rem] overflow-hidden border-8 border-surface-border"
+    >
+      <div
+        class="absolute top-0 inset-x-0 h-5 bg-surface-border w-30 mx-auto rounded-b-xl z-20"
+      >
+      </div>
+      <Image src={heroImage} alt="Hero" />
+    </div>
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[640px] bg-gradient-to-tr from-bg-accent/30 to-bg-accent-secondary/20 rounded-[3.5rem] blur-xl -z-10"
+    >
+    </div>
+  </div>
+</div>

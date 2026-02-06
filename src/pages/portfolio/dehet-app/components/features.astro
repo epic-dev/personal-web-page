@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+
+const features = await getCollection("features");
+const featureColors = [
+  "primary",
+  "orange-500",
+  "purple-500",
+  "green-500",
+  "pink-500",
+  "teal-500",
+];
+---
+
+<div class="py-24 dark:bg-background-dark bg-background-light relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-3">
+        Core Features
+      </h2>
+      <h3 class="text-3xl md:text-4xl font-bold dark:text-white text-main">
+        Everything you need to reach fluency
+      </h3>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        features.map(({ data }, index) => (
+          <div
+            class={`relative p-6 rounded-2xl dark:bg-surface-dark bg-background-light border dark:border-surface-border border-surface-border-light dark:hover:bg-surface-border/30 hover:border-primary/20 hover:shadow-md hover:shadow-primary/20 transition-all ${data.coming_soon ? "opacity-20 pointer-events-none" : ""}`}
+          >
+            {data.coming_soon && (
+              <div class="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full">
+                Coming Soon
+              </div>
+            )}
+            <div class="flex items-start justify-between mb-4">
+              <div
+                class={`p-3 bg-${featureColors[index]}/10 rounded-lg text-${featureColors[index]}`}
+              >
+                <span class="material-symbols-outlined">{data.icon}</span>
+              </div>
+            </div>
+            <h4 class="text-lg font-bold dark:text-white text-main mb-2">
+              {data.title}
+            </h4>
+            <p class="dark:text-slate-400 text-text-muted text-sm">
+              {data.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

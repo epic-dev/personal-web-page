@@ -1,0 +1,12 @@
+- id: step-1
+  title: 1. See a Word
+  icon: visibility
+  description: A common Dutch noun appears on a card. We focus on the most used words first.
+- id: step-2
+  title: 2. Swipe to Decide
+  icon: swipe_left
+  description: Swipe LEFT for 'De' words, swipe RIGHT for 'Het' words. Simple gestures build muscle memory.
+- id: step-3
+  title: 3. Instant Feedback
+  icon: bolt
+  description: Get immediate correction. If you're wrong, the card returns later using spaced repetition.
