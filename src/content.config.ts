@@ -25,7 +25,26 @@ const workflow = defineCollection({
   schema: workflowZod,
 })
 
+const pricing = defineCollection({
+  loader: file("src/pages/portfolio/dehet-app/data/pricing.yaml"),
+  schema: z.object({
+    id: z.string(),
+    name: z.string(),
+    price: z.string().optional(),
+    annual_price: z.string().optional(),
+    one_time_price: z.string().optional(),
+    features: z.array(z.string()),
+    button: z.object({
+      text: z.string(),
+      url: z.string(),
+    }),
+    asterisk: z.string().optional(),
+    highlighted: z.boolean().optional(),
+  }),
+})
+
 export const collections = {
   features,
   workflow,
+  pricing,
 }

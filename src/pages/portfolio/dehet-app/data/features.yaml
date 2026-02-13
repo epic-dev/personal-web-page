@@ -24,3 +24,18 @@
   description: Hear the correct pronunciation for every word by native speakers.
   icon: graphic_eq
   coming_soon: true
+- id: 7
+  title: Voice Search & Feedback
+  description: Use your microphone to check your pronunciation and get instant feedback.
+  icon: mic
+  coming_soon: true
+- id: 8
+  title: Progress Analytics
+  description: Track your learning journey with detailed statistics and performance charts.
+  icon: insights
+  coming_soon: true
+- id: 9
+  title: Daily Reminders
+  description: Stay consistent with customizable notifications to keep your streak alive.
+  icon: notifications
+  coming_soon: true

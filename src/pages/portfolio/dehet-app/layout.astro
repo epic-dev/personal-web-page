@@ -1,10 +1,12 @@
 ---
 import { SEO } from "astro-seo";
 import "./styles.css";
+
+const TELEMETRYDECK_APP_ID = import.meta.env.TELEMETRY_DECK_APP_ID;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <SEO
       title="De Het Swipe - Master Dutch Articles"
@@ -35,6 +37,9 @@ import "./styles.css";
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script
+      src="https://cdn.telemetrydeck.com/websdk/telemetrydeck.min.js"
+      data-app-id={TELEMETRYDECK_APP_ID}></script>
   </head>
   <body
     class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 selection:bg-blue-800/30 selection:text-white dark:selection:bg-red-500/30 dark:selection:text-blue-500 overflow-x-hidden"

@@ -1,0 +1,37 @@
+- id: free
+  name: Novice
+  price: €0
+  annual_price: €0
+  features:
+    - 40 swipes per day
+    - Basic features
+    - Offline mode*
+    - No ads
+  button:
+    text: Download
+    url: https://apps.apple.com/app/de-het/id6750764957
+  asterisk: available on free plan only
+- id: pro
+  name: Polyglot
+  price: €3.99
+  annual_price: €24.99
+  features:
+    - Voice search & feedback
+    - Progress analytics
+    - Daily reminders
+    - Unlimited swipes
+  button:
+    text: Add me to the waitlist
+    url: mailto:pavel.yuruts@gmail.com?subject=Add%20me%20to%20the%20waitlist&body=I%20would%20like%20to%20be%20added%20to%20the%20waitlist%20for%20the%20Polyglot%20plan."
+  highlighted: true
+- id: lifetime
+  name: Lifetime
+  price: €49.99
+  one_time_price: €49.99
+  features:
+    - All features of Polyglot plan
+    - Exclusive badge
+    - Exclusive app theme
+  button:
+    text: Add me to the waitlist
+    url: mailto:pavel.yuruts@gmail.com?subject=Add%20me%20to%20the%20waitlist&body=I%20would%20like%20to%20be%20added%20to%20the%20waitlist%20for%20the%20Lifetime%20plan.

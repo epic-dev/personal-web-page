@@ -6,17 +6,33 @@ import "../styles/global.css";
 
 <html lang="en">
 	<head>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript
+			><iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-T5B2C533"
+				height="0"
+				width="0"
+				style="display:none;visibility:hidden"></iframe></noscript
+		>
+		<!-- End Google Tag Manager (noscript) -->
+
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content="Explore the work, projects, and writings. A personal space for sharing experience in software development and technology.">
-		<meta name="keywords" content="Pavel Yuruts, software developer, web developer, mobile app developer, full-stack developer, software development, web development, mobile app development, full-stack development, technology, software, web, mobile app, full-stack">
-		<meta name="author" content="Pavel Yuruts">
+		<meta
+			name="description"
+			content="Explore the work, projects, and writings. A personal space for sharing experience in software development and technology."
+		/>
+		<meta
+			name="keywords"
+			content="Pavel Yuruts, software developer, web developer, mobile app developer, full-stack developer, software development, web development, mobile app development, full-stack development, technology, software, web, mobile app, full-stack"
+		/>
+		<meta name="author" content="Pavel Yuruts" />
 		<title>Pavel's place</title>
 		<!-- Google tag (gtag.js) -->
-		<script
+		<!-- <script
 			type="text/plain"
 			data-category="analytics"
 			async
@@ -29,7 +45,21 @@ import "../styles/global.css";
 			gtag("js", new Date());
 
 			gtag("config", "G-LQSRGN2WB9");
+		</script> -->
+		<!-- Google Tag Manager -->
+		<script>
+			(function (w, d, s, l, i) {
+				w[l] = w[l] || [];
+				w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != "dataLayer" ? "&l=" + l : "";
+				j.async = true;
+				j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+				f.parentNode.insertBefore(j, f);
+			})(window, document, "script", "dataLayer", "GTM-T5B2C533");
 		</script>
+		<!-- End Google Tag Manager -->
 	</head>
 	<body class="h-screen">
 		<div class="wrapper">

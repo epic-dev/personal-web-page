@@ -1,0 +1,119 @@
+---
+import { getCollection } from "astro:content";
+
+const pricing = await getCollection("pricing");
+
+// Sort pricing to ensure specific order if needed, or rely on yaml order
+// expected order: Free, Pro, Lifetime based on yaml
+const sortedPricing = pricing.sort((a, b) => {
+  const order = ["free", "pro", "lifetime"];
+  return order.indexOf(a.id) - order.indexOf(b.id);
+});
+---
+
+<div
+  id="pricing"
+  class="py-24 dark:bg-surface-dark bg-surface-light border-y dark:border-surface-border border-surface-border-light relative"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-3">
+        Pricing
+      </h2>
+      <h3 class="text-3xl md:text-4xl font-bold dark:text-white text-main">
+        Choose the plan that fits you best
+      </h3>
+    </div>
+
+    {
+      /* Use a map to ensure Tailwind strings are present in build time source, preventing JIT issues with dynamic strings */
+    }
+    <div
+      class={`grid grid-cols-1 gap-6 ${
+        {
+          1: "md:grid-cols-1",
+          2: "md:grid-cols-2",
+          3: "md:grid-cols-3",
+          4: "md:grid-cols-4",
+        }[pricing.length] || "md:grid-cols-3"
+      }`}
+    >
+      {
+        sortedPricing.map(({ data }) => (
+          <div
+            class={`relative p-8 rounded-2xl dark:bg-surface-dark bg-background-light border dark:border-surface-border border-surface-border-light flex flex-col
+              ${data.highlighted ? "border-primary/50 shadow-lg shadow-primary/10 ring-1 ring-primary/50" : "hover:border-primary/20 hover:shadow-md hover:shadow-primary/20"} 
+              transition-all duration-300`}
+          >
+            {data.highlighted && (
+              <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                Most Popular
+              </div>
+            )}
+
+            <div class="mb-6">
+              <h4 class="text-xl font-bold dark:text-white text-main mb-2">
+                {data.name}
+              </h4>
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-bold dark:text-white text-main">
+                  {data.price}
+                </span>
+                {data.id !== "lifetime" && data.price !== "€0" && (
+                  <span class="text-sm dark:text-slate-400 text-text-muted">
+                    /month
+                  </span>
+                )}
+                {data.one_time_price && (
+                  <span class="text-sm dark:text-slate-400 text-text-muted">
+                    one time
+                  </span>
+                )}
+              </div>
+              {data.annual_price && (
+                <p class="text-sm text-primary font-medium mt-1">
+                  or {data.annual_price} / year
+                </p>
+              )}
+            </div>
+
+            <div class="space-y-4 mb-8 flex-grow">
+              {data.features.map((feature) => (
+                <div class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-primary text-xl shrink-0">
+                    check
+                  </span>
+                  <span class="text-sm dark:text-slate-300 text-text-muted">
+                    {feature}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {data.asterisk && (
+              <p class="text-sm dark:text-slate-500 text-text-muted italic mb-3">
+                * {data.asterisk}
+              </p>
+            )}
+
+            <a
+              href={data.button.url}
+              target={data.button.url.startsWith("http") ? "_blank" : "_self"}
+              rel={
+                data.button.url.startsWith("http") ? "noopener noreferrer" : ""
+              }
+              class={`block w-full text-center py-3 px-6 rounded-xl font-bold transition-colors
+              ${
+                data.highlighted
+                  ? "bg-primary text-white hover:bg-primary/90"
+                  : "bg-surface-border-light dark:bg-surface-border/50 dark:text-white text-main hover:bg-surface-border dark:hover:bg-surface-border"
+              }`}
+            >
+              {data.button.text}
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
