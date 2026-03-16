@@ -1,0 +1,35 @@
+---
+layout: '../../layouts/article.astro'
+title: 'Release 1.1.0'
+pubDate: 2026-03-15
+description: 'Release 1.1.0 of De Het Swipe app'
+author: 'Pavel Yuruts'
+tags: ["flutter", "release", "app"]
+
+topImage: 
+  src: '/images/coding-day1.webp'
+  alt: coding-day-1
+
+setup: |
+  import { Picture } from "astro-imagetools/components";
+---
+
+It's been a while since I've posted anything here. The first release of De Het Swipe was already a month ago. 
+
+### Release 1.1.0 What's new?
+
+First of all I've refined the balance of the words. I've received a feedback that there are a way more het- words than de- words, so I've adjusted them.
+It's still not perfect, but it's better. By the way, receiving feedback is such an exciting experience!
+
+Other than that I've added a setting to adjust desired theme. Not only rely on system one. Added screen with Dutch rules regarding the usage of de/het.
+
+Not much, huh? But the the huge work was behind the scenes.
+I restructured how words are managed: instead of grouping them purely by "de" or "het," words are now broken down into categories. I also built a brand-new data service specifically to handle this raw categorized data more efficiently.
+I guess it allows me to add more categories in the future and/or possibility for users to manage their own word lists.
+
+Of course some bugs were fixed too. 
+
+Overall, version 1.1.0 is available now, bringing together all these fantastic improvements over the past two months.
+Keep on swiping, and good luck mastering those Dutch articles! 
+
+To be continued...
