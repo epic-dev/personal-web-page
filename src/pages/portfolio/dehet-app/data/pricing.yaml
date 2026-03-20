@@ -5,12 +5,11 @@
   features:
     - 40 swipes per day
     - Basic features
-    - Offline mode*
+    - 100% offline
     - No ads
   button:
     text: Download
     url: https://apps.apple.com/app/de-het/id6750764957
-  asterisk: available on free plan only
 - id: pro
   name: Polyglot
   price: €3.99
