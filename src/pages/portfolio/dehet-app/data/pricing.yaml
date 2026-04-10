@@ -8,12 +8,14 @@
     - 100% offline
     - No ads
   button:
-    text: Download
-    url: https://apps.apple.com/app/de-het/id6750764957
+    text: Download on the App Store
+    url: https://apps.apple.com/nl/app/de-het/id6750764957
 - id: pro
   name: Polyglot
-  price: €3.99
-  annual_price: €24.99
+  # price: €3.99
+  # annual_price: €24.99
+  price: TBA
+  annual_price: TBA
   features:
     - Voice search & feedback
     - Progress analytics
@@ -25,8 +27,10 @@
   highlighted: true
 - id: lifetime
   name: Lifetime
-  price: €49.99
-  one_time_price: €49.99
+  # price: €49.99
+  # one_time_price: €49.99
+  price: TBA
+  one_time_price: TBA
   features:
     - All features of Polyglot plan
     - Exclusive badge
