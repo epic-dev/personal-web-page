@@ -5,6 +5,7 @@
   features:
     - 40 swipes per day
     - Basic features
+    - Progress analytics
     - 100% offline
     - No ads
   button:
@@ -18,7 +19,7 @@
   annual_price: TBA
   features:
     - Voice search & feedback
-    - Progress analytics
+    # - Progress analytics
     - Daily reminders
     - Unlimited swipes
   button:
