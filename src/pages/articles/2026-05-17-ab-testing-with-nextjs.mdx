@@ -1,0 +1,75 @@
+---
+layout: '../../layouts/article.astro'
+title: 'Naive A/B testing with Next.js'
+pubDate: 2026-05-17
+description: 'A simple cookie-based A/B testing setup using Next.js proxy'
+author: 'Pavel Yuruts'
+tags: ["nextjs", "abtesting", "web"]
+
+topImage: 
+  src: '/images/coding-day1.webp'
+  alt: coding-day-1
+---
+
+For one of my projects I wanted to set up A/B testing. I tried to figure out how to do this in general, so today I'll describe the simplest solution, or naive if you will.
+
+Let's imagine we want a 50/50 A/B test on the `/home` page. Variant `A` is the original page. Variant `B` has a redesigned hero. We want a user to be assigned to a variant on first visit and stay in that variant.
+
+#### Proxy
+In Next.js (version 16.x), the right place for this logic is `proxy.ts` at the project root — it runs on every request before the page renders, which makes it perfect for cookie-based routing.
+
+The overall process is the following:
+
+- if it is a new user, we randomly assign them to Variant A or B using `Math.random()`
+- if the user has such cookie, then based on the cookie value we should rewrite the URL to the corresponding path
+
+```ts 
+    import { NextResponse } from 'next/server'
+    import type { NextRequest } from 'next/server'
+
+    const abTestCookieName = 'ab-test'
+    const pathByVariant: { [key: string]: string } = {
+        'A': '/home', // original
+        'B': '/home-b',
+    }
+
+    export function proxy(request: NextRequest) {
+        const existingVariant = request.cookies?.get(abTestCookieName)?.value
+        /**
+         * Math.random() is very naive solution, better build a hash
+         *  from IP, User ID, Session ID, etc. something more stable 
+         * */
+        const variant = existingVariant ?? (Math.random() < 0.5 ? 'A' : 'B');
+
+        /** cloning the URL to be able to rewrite its path 
+         * and pass as an argument to the .rewrite() function 
+         * */
+        const url = request.nextUrl.clone();
+        url.pathname = pathByVariant[variant];
+        
+        const response = NextResponse.rewrite(url);
+        
+        if (!existingVariant) {
+            response.cookies.set(abTestCookieName, variant); 
+        }
+
+        return response;
+    }
+
+    /** you might use some matchers already, 
+     * but for this particular example I intentionally match only one route 
+     * */
+    export const config = {
+        matcher: ['/home'],
+    }
+```
+
+#### Caveats
+
+This approach is intentionally simple. It has a few rough edges: assignment is random with no targeting (no geo, no user segment), and if a user clears cookies they may switch variants. There's also no built-in way to measure results — you'll need to wire that up separately.
+
+For tracking, you can read the abTest cookie on the client and fire an event to your analytics tool (e.g. `posthog.capture('ab_variant', { variant })`) when the page mounts.
+
+#### Conclusion
+
+For a small project or a quick experiment, this is enough to get started. Once you need proper targeting, statistical significance, or a dashboard, it's worth looking at dedicated tools like `GrowthBook` or `PostHog` feature flags — but the cookie + rewrite pattern at the core stays the same.
