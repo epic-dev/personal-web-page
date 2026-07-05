@@ -23,6 +23,7 @@ The overall process is the following:
 - if it is a new user, we randomly assign them to Variant A or B using `Math.random()`
 - if the user has such cookie, then based on the cookie value we should rewrite the URL to the corresponding path
 
+<pre>
 ```ts 
     import { NextResponse } from 'next/server'
     import type { NextRequest } from 'next/server'
@@ -63,6 +64,7 @@ The overall process is the following:
         matcher: ['/home'],
     }
 ```
+</pre>
 
 #### Caveats
 
