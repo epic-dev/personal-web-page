@@ -1,12 +1,21 @@
 ---
 import DefaultLayout from "../../layouts/default.astro";
 
+type ArticleModule = {
+  frontmatter: {
+    pubDate: string;
+    title: string;
+    description?: string;
+  };
+  url: string;
+  file: string;
+};
 // Get all article files
-const articles = await Astro.glob('./*.mdx');
+const articles = import.meta.glob<ArticleModule>("./*.mdx", { eager: true });
 
 // Sort by date (newest first) and filter out index
-const sortedArticles = articles
-  .filter(article => !article.file.includes('index'))
+const sortedArticles = Object.values(articles)
+  .filter((article) => !article.file.includes("index"))
   .sort((a, b) => {
     const dateA = new Date(a.frontmatter.pubDate);
     const dateB = new Date(b.frontmatter.pubDate);
@@ -17,7 +26,9 @@ const sortedArticles = articles
 <DefaultLayout>
   <div class="max-w-4xl mx-auto px-6 py-24 sm:py-32">
     <header class="mb-16 opacity-0 animate-fade-up">
-      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
+      <h1
+        class="text-5xl sm:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-4"
+      >
         Blog
       </h1>
       <p class="text-xl text-gray-600 dark:text-gray-400">
@@ -26,55 +37,59 @@ const sortedArticles = articles
     </header>
 
     <div class="space-y-12 opacity-0 animate-fade-up delay-200">
-      {sortedArticles.map((article, index) => {
-        const pubDate = new Date(article.frontmatter.pubDate).toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        });
-        
-        return (
-          <article class="group">
-            <a 
-              href={article.url} 
-              class="block transition-all duration-300 hover:translate-x-2"
-            >
-              <div class="flex flex-col gap-3">
-                <time class="text-sm font-medium text-gray-500 uppercase tracking-wider">
-                  {pubDate}
-                </time>
-                <h2 class="text-2xl sm:text-3xl font-bold dark:text-white group-hover:text-blue-600 transition-colors">
-                  {article.frontmatter.title}
-                </h2>
-                {article.frontmatter.description && (
-                  <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                    {article.frontmatter.description}
-                  </p>
-                )}
-                <div class="flex items-center gap-2 text-blue-600 font-medium">
-                  <span>Read article</span>
-                  <svg 
-                    class="w-5 h-5 transition-transform group-hover:translate-x-1" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor"
-                  >
-                    <path 
-                      stroke-linecap="round" 
-                      stroke-linejoin="round" 
-                      stroke-width="2" 
-                      d="M17 8l4 4m0 0l-4 4m4-4H3" 
-                    />
-                  </svg>
+      {
+        sortedArticles.map((article, index) => {
+          const pubDate = new Date(
+            article.frontmatter.pubDate,
+          ).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+
+          return (
+            <article class="group">
+              <a
+                href={article.url}
+                class="block transition-all duration-300 hover:translate-x-2"
+              >
+                <div class="flex flex-col gap-3">
+                  <time class="text-sm font-medium text-gray-500 uppercase tracking-wider">
+                    {pubDate}
+                  </time>
+                  <h2 class="text-2xl sm:text-3xl font-bold dark:text-white group-hover:text-blue-600 transition-colors">
+                    {article.frontmatter.title}
+                  </h2>
+                  {article.frontmatter.description && (
+                    <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {article.frontmatter.description}
+                    </p>
+                  )}
+                  <div class="flex items-center gap-2 text-blue-600 font-medium">
+                    <span>Read article</span>
+                    <svg
+                      class="w-5 h-5 transition-transform group-hover:translate-x-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </div>
                 </div>
-              </div>
-            </a>
-            {index < sortedArticles.length - 1 && (
-              <hr class="mt-12 border-gray-200" />
-            )}
-          </article>
-        );
-      })}
+              </a>
+              {index < sortedArticles.length - 1 && (
+                <hr class="mt-12 border-gray-200" />
+              )}
+            </article>
+          );
+        })
+      }
     </div>
   </div>
 </DefaultLayout>
