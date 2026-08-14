@@ -1,0 +1,56 @@
+<section class="max-w-container-max mx-auto px-gutter py-xl" id="quickstart">
+    <div
+        class="bg-inverse-surface rounded-xl p-lg overflow-hidden relative shadow-lg"
+    >
+        <div
+            class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTAgMGg0MHY0MEgwek0wIDBoMnYySDB6IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9Ii4xIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=')]"
+        >
+        </div>
+        <div
+            class="relative z-10 flex flex-col md:flex-row gap-lg items-center"
+        >
+            <div class="flex-1 text-on-primary">
+                <h2
+                    class="font-headline-lg text-headline-lg mb-sm text-inverse-on-surface"
+                >
+                    From zero to flags in seconds.
+                </h2>
+                <p class="font-body-md text-inverse-primary/80 mb-md">
+                    No complicated setup. Pull the image, run the container, and
+                    start using flags immediately via our SDK.
+                </p>
+                <a
+                    class="inline-flex items-center text-inverse-primary hover:text-primary-fixed transition-colors font-label-md group"
+                    href="https://github.com/epic-dev/safelaunch/blob/main/README.md"
+                >
+                    Read the full docs
+                    <span
+                        class="material-symbols-outlined ml-1 group-hover:translate-x-1 transition-transform"
+                        >arrow_forward</span
+                    >
+                </a>
+            </div>
+            <div
+                class="flex-1 w-full bg-[#111318] rounded border border-outline/30 p-sm font-code-md text-code-md text-surface-container-low shadow-inner"
+            >
+                <div
+                    class="flex gap-2 mb-sm border-b border-outline/30 pb-2 px-2"
+                >
+                    <div class="w-3 h-3 rounded-full bg-outline/50"></div>
+                    <div class="w-3 h-3 rounded-full bg-outline/50"></div>
+                    <div class="w-3 h-3 rounded-full bg-outline/50"></div>
+                </div>
+                <div class="p-2 overflow-x-auto">
+                    <pre><code class="text-primary-fixed"># Start the server</code></pre>
+                    <pre><code>docker run -p 8080:8080 safelaunch/server</code></pre>
+                    <br />
+                    <pre><code class="text-primary-fixed"># In your app</code></pre>
+                    <pre><code class="text-tertiary-fixed">import</code> <code>&lbrace; SafeLaunch &rbrace;</code> <code class="text-tertiary-fixed">from</code> <code>'@safelaunch/sdk'</code></pre>
+                    <br />
+                    <pre><code class="text-primary-fixed-dim">const</code> <code>client = </code><code class="text-primary-fixed-dim">new</code> <code>SafeLaunch('http://localhost:8080')</code></pre>
+                    <pre><code class="text-primary-fixed-dim">const</code> <code>flag = client.get('new-feature')</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

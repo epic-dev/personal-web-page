@@ -1,0 +1,53 @@
+<section class="max-w-container-max mx-auto px-gutter py-xl" id="comparison">
+    <h2 class="font-headline-lg text-headline-lg text-center mb-lg">
+        More than env vars, less than a platform.
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+        <div
+            class="p-md rounded-xl border border-outline-variant bg-surface-container-lowest flex flex-col items-start hover:shadow-[0_4px_12px_rgba(0,0,0,0.02)] transition-shadow"
+        >
+            <span
+                class="font-label-md text-label-md bg-surface-container px-sm py-xs rounded mb-sm text-on-surface-variant"
+                >Too Little</span
+            >
+            <h3 class="font-headline-sm text-headline-sm mb-sm">Env Vars</h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+                Static configuration that requires a full application redeploy
+                to change. Zero user targeting or safe rollout capabilities.
+            </p>
+        </div>
+        <div
+            class="p-md rounded-xl border-2 border-primary bg-primary-fixed/10 flex flex-col items-start relative shadow-[0_4px_12px_rgba(0,76,215,0.05)] transform md:-translate-y-2"
+        >
+            <span
+                class="font-label-md text-label-md bg-primary text-on-primary px-sm py-xs rounded mb-sm"
+                >Just Right</span
+            >
+            <h3
+                class="font-headline-sm text-headline-sm mb-sm text-primary-container"
+            >
+                SafeLaunch
+            </h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+                Single Go binary with embedded SQLite. Provides instant UI
+                toggles and powerful targeted rollouts with near-zero
+                operational overhead.
+            </p>
+        </div>
+        <div
+            class="p-md rounded-xl border border-outline-variant bg-surface-container-lowest flex flex-col items-start hover:shadow-[0_4px_12px_rgba(0,0,0,0.02)] transition-shadow"
+        >
+            <span
+                class="font-label-md text-label-md bg-surface-container px-sm py-xs rounded mb-sm text-on-surface-variant"
+                >Too Much</span
+            >
+            <h3 class="font-headline-sm text-headline-sm mb-sm">
+                Enterprise Platforms
+            </h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+                Expensive, complex platforms requiring dedicated teams to
+                manage. Overkill for indie hackers and small, fast-moving teams.
+            </p>
+        </div>
+    </div>
+</section>

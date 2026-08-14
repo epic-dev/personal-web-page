@@ -1,0 +1,20 @@
+---
+import TopNavBar from "./components/top-nav-bar.astro";
+import Footer from "./components/footer.astro";
+import Layout from "./layout.astro";
+import Hero from "./components/hero.astro";
+import Positioning from "./components/positioning.astro";
+import Features from "./components/features.astro";
+import Quickstart from "./components/quickstart.astro";
+---
+
+<Layout>
+    <TopNavBar />
+    <main class="pt-24 pb-xl space-y-xl">
+        <Hero />
+        <Positioning />
+        <Features />
+        <Quickstart />
+    </main>
+    <Footer />
+</Layout>

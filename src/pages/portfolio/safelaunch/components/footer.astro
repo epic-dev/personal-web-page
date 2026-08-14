@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets";
+import safeLaunchAppImage from "../../../../images/portfolio/sl-logo-short.png";
+---
+
+<footer
+    class="w-full py-xl bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline-variant/20"
+>
+    <div
+        class="max-w-container-max mx-auto px-gutter grid grid-cols-2 md:grid-cols-4 gap-md font-body-sm text-body-sm"
+    >
+        <div class="col-span-2 md:col-span-1 flex flex-col gap-sm">
+            <div class="flex items-center gap-xs">
+                <Image
+                    alt="SafeLaunch Logo"
+                    class="rounded h-10 w-auto"
+                    src={safeLaunchAppImage}
+                />
+                <span
+                    class="font-headline-sm text-headline-sm font-bold text-on-surface dark:text-on-surface"
+                    >SafeLaunch</span
+                >
+            </div>
+            <p
+                class="text-on-surface-variant dark:text-on-surface-variant mt-sm"
+            >
+                © {new Date().getFullYear()} SafeLaunch Open Source Project. Released
+                under Apache 2.0.
+            </p>
+        </div>
+        <!-- <div class="flex flex-col gap-sm">
+            <span
+                class="font-semibold text-primary dark:text-primary-fixed mb-xs"
+                >Product</span
+            >
+            <a
+                class="text-on-surface-variant dark:text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity hover:text-primary dark:hover:text-primary-fixed underline decoration-2 underline-offset-4"
+                href="#">Documentation</a
+            >
+            <a
+                class="text-on-surface-variant dark:text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity hover:text-primary dark:hover:text-primary-fixed underline decoration-2 underline-offset-4"
+                href="#">Changelog</a
+            >
+            <a
+                class="text-on-surface-variant dark:text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity hover:text-primary dark:hover:text-primary-fixed underline decoration-2 underline-offset-4"
+                href="#">Security</a
+            >
+        </div>
+        <div class="flex flex-col gap-sm">
+            <span class="font-semibold text-on-surface mb-xs">Project</span>
+            <a
+                class="text-on-surface-variant dark:text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity hover:text-primary dark:hover:text-primary-fixed underline decoration-2 underline-offset-4"
+                href="https://github.com/epic-dev/safelaunch">GitHub</a
+            >
+            <a
+                class="text-on-surface-variant dark:text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity hover:text-primary dark:hover:text-primary-fixed underline decoration-2 underline-offset-4"
+                href="#">Community</a
+            >
+            <a
+                class="text-on-surface-variant dark:text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity hover:text-primary dark:hover:text-primary-fixed underline decoration-2 underline-offset-4"
+                href="#">Privacy</a
+            >
+        </div> -->
+    </div>
+</footer>

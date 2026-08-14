@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+import safeLaunchAppImage from "../../../../images/portfolio/sl-logo-wide.png";
+---
+
+<section class="max-w-container-max mx-auto px-gutter text-center pt-xl">
+    <div class="max-w-[800px] mx-auto flex flex-col items-center mb-lg">
+        <Image
+            alt="SafeLaunch Logo"
+            class="mb-md rounded-lg aspect-auto"
+            src={safeLaunchAppImage}
+            height={80}
+        />
+        <h1
+            class="font-display-lg text-display-lg text-on-surface mb-md tracking-tight"
+        >
+            You want to change flags without a redeploy.
+        </h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant mb-lg">
+            The open-source, single-binary feature flag server for indie hackers
+            and micro-SaaS. Self-hosted, lightweight, and built for speed.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-sm justify-center mb-xl">
+            <!-- <a
+                class="inline-flex items-center justify-center px-lg py-sm bg-primary text-on-primary rounded font-body-md font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-[0_4px_12px_rgba(0,76,215,0.15)]"
+                href="#">Get Started</a
+            > -->
+            <a
+                class="inline-flex items-center justify-center px-lg py-sm border border-outline text-on-surface rounded font-body-md hover:bg-surface-container-low transition-colors"
+                href="https://github.com/epic-dev/safelaunch">View on GitHub</a
+            >
+        </div>
+    </div>
+</section>
