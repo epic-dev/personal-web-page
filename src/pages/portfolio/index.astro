@@ -2,6 +2,7 @@
 import DefaultLayout from "../../layouts/default.astro";
 import { Image } from "astro:assets";
 import dehetAppImage from "../../images/portfolio/de-het-group.webp";
+import safeLaunchImage from "../../images/portfolio/safelaunch.webp";
 
 const portfolioItems = [
   {
@@ -10,6 +11,14 @@ const portfolioItems = [
     description: "Master Dutch articles with this intuitive learning companion. Ad-free and offline. Just effective.",
     image: dehetAppImage,
     link: "/portfolio/dehet-app",
+    color: "bg-blue-50 dark:bg-blue-900/20",
+  },
+  {
+    title: "Safelaunch",
+    category: "Web App, binary, docker image",
+    description: "Make you features work for you regardless your deployment process.",
+    image: safeLaunchImage,
+    link: "/portfolio/safelaunch",
     color: "bg-blue-50 dark:bg-blue-900/20",
   },
 ];
