@@ -2,6 +2,8 @@
 import Footer from "../components/footer.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 import "../styles/global.css";
+
+const TELEMETRYDECK_APP_ID = import.meta.env.TELEMETRY_DECK_APP_ID;
 ---
 
 <html lang="en">
@@ -60,6 +62,9 @@ import "../styles/global.css";
 			})(window, document, "script", "dataLayer", "GTM-T5B2C533");
 		</script>
 		<!-- End Google Tag Manager -->
+		 <script
+            src="https://cdn.telemetrydeck.com/websdk/telemetrydeck.min.js"
+            data-app-id={TELEMETRYDECK_APP_ID}></script>
 	</head>
 	<body class="h-screen">
 		<div class="wrapper">
