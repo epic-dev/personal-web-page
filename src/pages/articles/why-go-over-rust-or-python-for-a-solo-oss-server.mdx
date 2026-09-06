@@ -1,0 +1,169 @@
+---
+layout: '../../layouts/article.astro'
+title: 'Why Go over Rust or Python for a solo OSS server'
+pubDate: 2026-09-07
+description: ''
+author: 'Pavel Yuruts'
+tags: ["golang", "oss", "feature management"]
+
+topImage: 
+  src: '/images/coding-day1.webp'
+  alt: coding-day-1
+---
+
+# Why Go over Rust or Python for a solo OSS server
+
+*Draft — 2026-08-03. Written while building SafeLaunch, an open-source feature flag server.*
+
+---
+
+## The decision I was making
+
+I'm building SafeLaunch — an open-source, self-contained feature flag server aimed at indie developers and micro-SaaS operators. The positioning is deliberately narrow: it sits between using environment variables (which most of my target users do today) and running a full flag platform like Unleash or ConfigCat. The core pitch is *"you want to change flags without a redeploy."*
+
+That positioning has real architectural implications. My target user runs on a $5-15/mo Hetzner box, a single Fly.io machine, or a Raspberry Pi in their basement. They don't want to run Postgres + Redis + a message queue just to toggle five flags. They want to `docker run` (or better: `./safelaunch`) and be done.
+
+For a project like this, the runtime language shapes almost every other decision downstream: image size, memory footprint, whether "single binary" is even possible, whether I need Docker at all, how the distribution story reads. So I took the choice seriously.
+
+The three real candidates were **Rust**, **Go**, and **Python-in-a-container**. I picked Go. This post is the honest reasoning.
+
+---
+
+## What I actually cared about
+
+Before the tradeoffs, the goals I was optimizing for:
+
+1. **Portfolio distinctiveness.** SafeLaunch is a portfolio-first project. The pitch to future employers isn't "here's a category-leading tool"; it's "here's what I built and why I made these decisions." The technical story has to be memorable enough to sustain a 45-minute interview conversation.
+2. **Ship velocity.** I have runway measured in months, not years. A tool I finish shipping is worth more than a technically-superior tool I abandon.
+3. **Runtime footprint.** My target users deploy on cheap infrastructure. A 100MB Python container idling at 80MB of RAM is a different product than a 15MB binary idling at 15MB.
+4. **Future edge-proxy work.** I want to build a lightweight edge proxy as an extension. Whatever language I pick for the main server, I probably want to write the edge proxy in the same language.
+5. **Not fighting the tool.** Enough of my time will go into product problems; I don't want to spend the rest wrestling the compiler or runtime.
+
+With those in mind, here's how the three options actually played out.
+
+---
+
+## Rust: strongest story, wrong bet for my situation
+
+The case for Rust is real. If I could have shipped SafeLaunch in Rust:
+
+- **Best-in-class single-binary story.** Static linking, tiny binary, sub-10MB memory footprint at idle.
+- **Modern async story.** Tokio + Axum + SQLx would give me exactly the shape I need, and every one of them is production-mature.
+- **Portfolio distinctiveness.** "I built a production-quality Rust backend" is a stronger sentence than "I built a Go backend." Rust roles at Cloudflare, Fly, Discord, and cryptography-adjacent companies all take Rust experience seriously.
+- **Alignment with future work.** Edge proxies in Rust are common and well-understood.
+
+Here's why I didn't:
+
+**Learning curve risk.** I'm not fluent in Rust. I've dabbled — enough to know that "dabbled" and "shipped a production service" are separated by 2-4 months of borrow-checker fights, learning ownership semantics, and rewriting things because I structured them wrong the first time. That's real time on the schedule.
+
+For a well-funded team with a 6-month runway to a first version, Rust makes sense — the depth investment pays back over years. For a solo project I want live in months, that risk equation flips. The most likely outcome of picking Rust as an unfamiliar language for a solo OSS server isn't "great Rust code." It's "unfinished project."
+
+I know myself well enough to know the failure mode. I'd fight the borrow checker for two weeks on something Go handles in an hour, get frustrated, get distracted, and end up with a half-built Rust codebase and no shipped product.
+
+The distinctiveness win is real, but only if I actually ship. Rust is the right pick for someone who can absorb the learning curve. It wasn't right for me right now.
+
+---
+
+## Python + Docker container: fluent, fast, story too weak
+
+The Python case is subtler. It's what I almost picked.
+
+Arguments for Python:
+
+- **I'm fluent.** Near-zero learning cost. I could start writing FastAPI handlers today and be productive within an hour.
+- **The ecosystem for this shape is mature.** FastAPI + Pydantic + SQLAlchemy or raw SQLite + Alembic covers everything I need. OpenTelemetry Python is production-ready. It's a well-trodden path.
+- **Coherence with the rest of the project.** SafeLaunch's CLI is going to be Python (Typer + rich makes for excellent terminal UX). The Python SDK is planned. Having the server also be Python simplifies my mental model — three surfaces of Python practice, not two.
+- **Ship velocity.** Estimated 30-50 hours saved compared to Go by not having to learn a new language.
+
+Arguments against Python:
+
+- **Runtime footprint.** A Python container built on `python:3.12-slim` is 50-100MB. Runtime memory for a FastAPI app is 40-80MB idle. My target users are running on $5 VPS boxes where 80MB of RAM per service adds up fast. A Go binary of the same functionality is 15MB on disk and 10-15MB of RAM idle. That's real.
+- **No single-binary story.** Python isn't a compile-to-native language. Best I could do is ship a Docker image and call that "single container." Which is fine — real projects do this, and I gave containers serious consideration — but the single-binary story is genuinely nicer for my target user, and it's more distinctive as a portfolio artifact.
+- **Portfolio distinctiveness is weak.** "I shipped a Python container" is what half the internet has done. Interviewers don't perk up. "I picked up Go for this project and shipped a single-binary server" is a more memorable sentence, if I can actually deliver it.
+- **Edge proxy doesn't fit.** Python at the edge is atypical for real reasons: GIL, cold-start time, memory. If the edge proxy vision is serious (and it is, to me), building the MVP in Python means either (a) rewriting in Go/Rust later, or (b) building an edge proxy in Python that's less competitive with what's expected. Neither is great.
+- **The "language coherence" argument turns out to be thinner than it sounds.** The server exposes REST; the SDK calls REST. There's no shared code between them. So "the server matches my SDK language" isn't a real technical win — it's aesthetic. The languages don't need to match.
+
+I circled the Python choice for a couple of days. It was tempting, and I want to be honest that it's a defensible pick for a lot of solo OSS projects. If ship velocity were my dominant priority and I didn't care about the portfolio distinctiveness, I'd have picked Python.
+
+Ultimately, the combination of (a) footprint mismatch with target users, (b) weaker portfolio story, and (c) poor edge-proxy fit tipped me the other way. But it was close.
+
+---
+
+## Go: the middle path that fits
+
+Go landed as the right pick for reasons that are less "Go is best" and more "Go hits the right balance of the constraints I actually have."
+
+**Manageable learning curve.** 2-4 weeks to real productivity, not 2-4 months. Go's design bets are aggressive on "one obvious way to do things," which means fewer paralysis-inducing decisions and less time lost to idiom debates. I can read *Let's Go* by Alex Edwards over a weekend and start writing real code the following Monday.
+
+**Genuine single-binary story.** `go build` produces a native binary. Cross-compile to Linux amd64 and arm64 from my Mac with `GOOS=linux GOARCH=amd64 go build`. Static-link SQLite via `modernc.org/sqlite` (pure Go, no CGO) and I get a truly portable binary that runs anywhere. Embed the Next.js dashboard via `//go:embed`. Embed migrations. Everything ships in one file.
+
+**Ecosystem for this exact shape.** Chi or Echo for routing. `modernc.org/sqlite` for SQLite. `//go:embed` for static assets and migrations. `goreleaser` for multi-channel release automation (binary + Docker + install script all from one config). OpenTelemetry Go SDK for observability. Every piece I need is production-mature and boring in the best sense.
+
+**Runtime footprint fits target user.** 15-30MB binary, 15MB idle RAM, sub-30ms cold start. Runs comfortably on a $5 VPS alongside other things.
+
+**Edge proxy alignment.** Go is the language edge proxies get built in for good reasons: fast startup, low memory, easy cross-compilation. When I extend SafeLaunch with an edge proxy later, I'm continuing in-language instead of rewriting.
+
+**Distinctive portfolio story.** Not as sharp as Rust would have been, but "I picked up Go for this project, shipped a 15MB single binary that embeds SQLite and a compiled React dashboard, runs on 8MB of RAM" is genuinely memorable. Interview conversations get concrete follow-up questions about `//go:embed`, about SQLite tuning, about goroutine patterns for the event pipeline. Those are technical conversations that go somewhere.
+
+**Interview leverage beyond this project.** Go is table-stakes at Cloudflare, Uber, Docker, many infrastructure companies, most cloud-native tooling. Time invested in Go for SafeLaunch pays out beyond just this one project. Python doesn't have the same leverage for the roles I'm targeting.
+
+---
+
+## The distribution story shaped everything
+
+One thing I underestimated: the runtime choice cascades into the whole distribution model.
+
+Choosing Go meant I could commit to a distribution matrix that Python-in-a-container just doesn't reach:
+
+- **Linux binary via GitHub Releases** — the primary artifact for self-hosters. `curl -O <url> && chmod +x safelaunch && ./safelaunch`. Five seconds to running.
+- **Docker container via GitHub Container Registry** — universal fallback for Mac / Windows dev, or anywhere Docker is standard. Built from the same Go binary, wrapped in a `distroless/static` base at ~20MB total.
+- **Install script** on the domain — `curl -fsSL https://safelaunch.dev/install | sh` — verifies SHA before running the binary. The Bun/Deno pattern.
+- **Homebrew formula** (later, post-launch) if adoption warrants.
+
+All of this from a single `goreleaser` config file, produced by one GitHub Actions workflow, from every git tag. That's the PocketBase / Caddy / MinIO playbook, and it's only accessible if the artifact is a native binary rather than a container image.
+
+The portfolio angle nobody talks about: **setting up proper multi-channel signed distribution with reproducible builds is itself a strong senior-engineering story.** "I ship SafeLaunch as a signed Linux binary, a Docker image, and via an install script, all built reproducibly from CI with SHA256 verification" is exactly the kind of supply-chain-security work distinguished engineers at OSS-heavy companies talk about. Doing this in Python + container is possible, but the story reads as "shipped a Python container" — the multi-channel narrative is much stronger with a native binary as the primary artifact.
+
+---
+
+## The honest caveats
+
+A few things Rust or Python would have done better:
+
+**Rust would have given me smaller everything.** A Rust equivalent of SafeLaunch could plausibly ship as a 5MB binary with sub-5MB RAM idle. Go's runtime overhead is real, if small. For a project where every megabyte matters (embedded systems, memory-constrained IoT), Rust would be the honest pick.
+
+**Python would have shipped faster.** I lose 2-4 weeks to Go ramp-up in Phase 1 of my roadmap. If I had a real deadline (paying customer, contract), I would have picked Python and eaten the portfolio-distinctiveness cost.
+
+**Both Rust and Python have better established idioms for certain sub-problems.** Rust's error handling with `Result<T, E>` is nicer than Go's `if err != nil` pattern. Python's data-processing ergonomics for the analytics rollup would have been marginally cleaner. Go trades verbosity for consistency — different-but-not-worse.
+
+If any of those tradeoffs mattered more than what I actually cared about, I'd have picked differently.
+
+---
+
+## When you should NOT copy this decision
+
+I'm suspicious of blog posts that generalize a personal choice into a universal recommendation. So — honest disclaimers about when this reasoning doesn't apply:
+
+- **If you're fluent in Rust:** pick Rust. The learning curve is the whole reason I didn't. Fluency changes the equation.
+- **If your product doesn't need to be self-hosted on tiny infrastructure:** the footprint argument evaporates. Python + container is fine.
+- **If shipping in a specific narrow window matters more than the portfolio story:** pick whatever you're fluent in.
+- **If you're building for a domain where a specific language is the standard** (data science → Python; embedded → Rust or C; browser tooling → TypeScript): pick the standard. Fighting your ecosystem is worse than a suboptimal language.
+- **If your target user runs everything in Kubernetes anyway:** the single-binary story loses value; ship a container. Container is fine when container is the standard.
+
+The Go pick worked for SafeLaunch because of a specific alignment: single-binary distribution mattered to my target user, portfolio distinctiveness mattered to me, and the learning curve was tolerable given my timeline. Different projects have different alignments.
+
+---
+
+## What I'd tell someone in the same spot
+
+If you're a solo developer building an OSS server for indie devs / micro-SaaS, and you're staring at the same three options I was:
+
+1. **Are you fluent in Rust?** If yes, use Rust. If no, know that the ramp-up will genuinely cost you 2-4 months. Solo projects die of unfinished, not of imperfect.
+2. **Are you fluent in Go?** If yes, use Go. Skip the debate.
+3. **If you're fluent in neither and comfortable in Python:** the question becomes whether the portfolio distinctiveness of learning Go is worth 2-4 weeks of ramp-up. For me, it was. For someone with a tight deadline or a stronger case that shipping matters most, Python + container is genuinely fine.
+
+Whatever you pick, name the reasoning in an ADR you can point to later. When someone asks you "why Go?" in an interview, "here's the ADR where I documented the tradeoffs against Rust and Python" is a better answer than "I felt like it." Half the value of this decision was writing it down.
+
+---
+
+*If you're curious about the rest of SafeLaunch's architecture, the [ADRs](https://github.com/[TBD]/safelaunch/tree/main/decisions) cover every non-trivial decision. This one is [ADR 009](https://github.com/[TBD]/safelaunch/blob/main/decisions/009-runtime-and-distribution.md).*
