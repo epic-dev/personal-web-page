@@ -22,7 +22,6 @@
   title: Favorites List
   description: Save difficult words to a custom list for focused practice sessions.
   icon: favorite
-  coming_soon: true
 - id: 4
   title: Audio Pronunciation
   description: Hear the correct pronunciation for every word by native speakers.
